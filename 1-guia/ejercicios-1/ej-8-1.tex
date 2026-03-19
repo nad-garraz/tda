@@ -74,7 +74,7 @@ De todas me voy a quedar con la máxima que se encuentre.
   morecomment={[l]{//}},
   commentstyle={\color{gray}\it\footnotesize}
 ]
-  funcion maxSS(i, d) -> [desde, hasta, $\sum_{j=desde}^{hasta}$ A[j]]  // Primer llamado con maxSS(1, n)
+  funcion maxSS(i, d) $\to$ [desde, hasta, $\sum_{j=desde}^{hasta}$ A[j]]  // Primer llamado con maxSS(1, n)
     if i = d
         ret [i, d, A[i]]        // devuelvo, [desde, hasta, suma = A[i]], el único elemento
 
@@ -90,7 +90,7 @@ De todas me voy a quedar con la máxima que se encuentre.
 
 Este ejercicio al igual que \textit{mergeSort} tiene al principio (y al medio) ese ... \textit{\purple{je ne sais quoi}}, que te hace pensar:
 \parrafoDestacado{
-  \textit{¿Qué clase de \sout{mierda} brujería es esta?}.
+  \textit{¿Qué clase de \sout{mierda} brujería es esta?}
 }
 Lo que me sirve (a mí) para salir de ese estado de locura mental es \textit{no hacer el camino de la recurrencia} con un ejemplo y tratar de entenderlo así.
 

@@ -301,7 +301,7 @@ funcion sumaSubset(C,i,j) $\to$ bool
         \end{tcolorbox}
 
         Cualquier llamada recursiva a $\green{sumaSubset}$ que tenga en su tercer argumento algo negativo
-        \red{¡No continuará haciendo llamadas recursivas la recursión!}, eso corta una \textit{subrama} del
+        \red{¡No continuará haciendo llamadas recursivas: Frena la recursión!}, eso corta una \textit{subrama} del
         árbol, es decir que \textit{se podó el árbol \red{\faIcon{cut}} \green{\faIcon{tree}} get it?}
 
   \item
@@ -339,3 +339,4 @@ funcion sumaSubset(C,i,j,p) // p es el vector solución pasado por referencia a 
         ret false \end{lstlisting}
         \end{tcolorbox}
 \end{enumerate}
+\fin

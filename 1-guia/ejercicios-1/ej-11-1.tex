@@ -25,29 +25,26 @@ Tiene pinta de $\textit{mergeSort}$. Solo que debo contar cuando hago los ordena
   \item Hago el \textit{divide} como siempre.
   \item El caso base agarra el arreglo de tamaño 1, donde no hay mucho que hacer.
   \item Al igual que en \textit{mergeSort} toda la papa está en la función \textit{contar},
-        que hace lo mismo que la función \textit{merge}, pero me va a ircontando cada vez que haya elementos
+        que hace lo mismo que la función \textit{merge}, pero me va a ir contando cada vez que haya elementos
         para ordenar.
   \item Si el elemento en la parte derecha \texttt{A[j]} es menor que el \texttt{A[i]}, \underline{también lo será} $\paratodo i \en [i,m]$,
         donde $m$ es el índice que salió del \textit{divide}. Dado que los arreglos de la izquierda y derecha están ordenados al igual que
         en \textit{mergeSort}.
   \item Tengo algo así \ul{$f(n) = 2f(n/2) + \text{las parejas que ordené}$}, lo cual tiene pinta de cumplir la restricción de complejidad pedida.
 \end{enumerate}
-
-\begin{minipage}{0.5\linewidth}
+% \begin{minipage}{0.39\linewidth}
   \begin{tcolorbox}
     \begin{lstlisting}
 funcion desordenSort(A[1..n])
     si n = 1
         ret 0 // nada que hacer
-
     m $\ot$ n/2
-
     ret desordenSort(A[1..m]) +
        desordenSort(A[m+1..n]) +
        contar(A[1..n], m)\end{lstlisting}
   \end{tcolorbox}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
+% \end{minipage}
+% \begin{minipage}{0.59\textwidth}
   \begin{tcolorbox}
     \begin{lstlisting}
 funcion contar(A[1..n], m)
@@ -73,10 +70,9 @@ funcion contar(A[1..n], m)
     k $\ot$ 1
     mientras k <= n
         A[k] $\ot$ B[k] // copio para actualizar A
-
     ret suma \end{lstlisting}
   \end{tcolorbox}
-\end{minipage}
+% \end{minipage}
 
 La complejidad de esta función es idéntica a la de \textit{mergeSort}. Hay 2 llamados recursivos de \textit{\green{desordenSort}} y en cada llamado hay una
 llamada a \textit{\green{contar}}, esta última recorre el arreglo \ul{una vez para ordenar y luego otra vez en el copiado} de la respuesta así que

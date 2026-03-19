@@ -2,7 +2,7 @@
   mathescape=true,
   emph={[1]funcion, return, ret, retorno},
   emph={[2]para, cada, si, sino, if, else, true, false, mientras, not, y, o},
-  emph={[3]meto, saco, maxSubset, max},
+  emph={[3]meto, saco, maxSubset, max, skip, keep},
   emphstyle={[1]\color{violet}\it},
   emphstyle={[2]\color{red}\it},
   emphstyle={[3]\color{OliveGreen}\it},
@@ -314,22 +314,27 @@ Este mismo ejercicio se puede resolver con otra implementación, quizás más in
 
 \parrafoDestacado[\red{\faIcon{code}}]{
   Y acá un pseudocódigo en imperativo para pasarlo a tu lenguaje favorito un poco más friendly
-    {\color{gray}\tiny(si tu lenguaje favorito es Haskell, hacete ver)} de la \ul{primera} implementación:
+    {\color{gray}\tiny(si tu lenguaje favorito es Haskell, hacete ver)} de la \ul{primera implementación}:
 }
 
 \begin{tcolorbox}
   \begin{lstlisting}
-      funcion maxSubset(r,k,I,l,n)
-          si |I|=k
-              ret {I,$\sumatoria{\texttt{i,j} \en \texttt{I}}{}$ M[i,j]}
-          si |I|+(n-l+1)<k
-              ret {$\vacio$, -$\infty$}
-          máximo $\ot$ -$\infty$
-          //   Arranca rama que usa l
-          I.meto(l)
-          máximo $\ot$ max(máximo, maxSubset(r+1,k,I,l+1,n)[2])
-          // Arranca rama que NO usa l
-          I.saco(l) 
-          máximo $\ot$ max(máximo,maxSubset(r+1,k,I,l+1,n)[2])
-          ret {I,máximo} \end{lstlisting}
+funcion maxSubset(k,I,l,n) //
+    si |I|=k
+        ret {I,$\sumatoria{\texttt{i,j} \en \texttt{I}}{}$ M[i,j]}
+    si |I|+(n-l+1)<k
+        ret {$\vacio$, -$\infty$}
+    máximo $\ot$ -$\infty$
+    //   Lógica de "Skip/Keep". O en japonés: "Tomoynotomo".
+    I.keep(l)
+    máximoConL $\ot$ maxSubset(k,I,l+1,n)
+    I.skip(l) 
+    máximoSinL $\ot$ maxSubset(k,I,l+1,n)
+    // Quiero el de mayor suma
+    si máximoConL[2] > máximoSinL[2] // el [2] accede a la segunda coordenada de la tupla
+        ret máximoConL
+    sino
+        ret máximoSinL\end{lstlisting}
 \end{tcolorbox}
+
+\fin

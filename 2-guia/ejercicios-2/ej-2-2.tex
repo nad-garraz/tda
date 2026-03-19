@@ -265,23 +265,29 @@ $$
 $$
 
 \item
-La función de costo $T(n^2)$ debería ser algo así, dado que tengo para elegir $n^2$ elementos del conjunto $C_{n^2} = \set{1,2,\ldots,n^2-1, n^2}$
-y en cada llamado recursivo, el \textit{cardinal} de $C_{n^2}$ disminuye en 1. La función de costo $T(n^2)$ sería algo así:
+La función de costo $T(n^2)$ debería ser algo así:
 $$
   T(n^2) =
   \llave{ccl}{
     1 & \text{si} & i = j = n\\
-    n^2T(n^2-1) + 1 & \text{si} & sino
+    n^2T(n^2-1) + 1 & \multicolumn{2}{l}{\text{sino}},
   }
 $$
-Esa ecuación recursiva, sucesión o como se diga tiene como solución a $T(n^2) \en O((n^2)!)$, solución que puede comprobarse como válida reemplazando:
+dado que tengo para elegir $n^2$ elementos del conjunto $C_{n^2} = \set{1,2,\ldots,n^2-1, n^2}$ y en cada llamado recursivo,
+el \textit{cardinal} de $C_{n^2}$ disminuye en 1. Esa función/ecuación/sucesión recursiva, o como se diga, tiene como \ul{solución} a una 
+función en el orden:
 $$
-  \llave{rcl}{
-    T(n^2) & = & (n^2)!\\
-    T(n^2 - 1) & = & (n^2-1)!
-  }
-  \Entonces{reemplazando}
-  \ub{(n^2)!}{\en O((n^2)!)} = \ub{\ob{n^2 \cdot (n^2 - 1)!}{(n^2)!} + 1}{\en O(n^2)!)}
+  \blue{T(n^2) \igual{$\llamada1$} (n^2)!} \en O((n^2)!),
+$$
+reemplazando puede comprobarse:
+$$
+  T(n^2) \igual{sol} (n^2)! \igual{def} n^2 \cdot (n^2 - 1)!
+  \entonces
+  T(n^2 - 1) \igual{sol} (n^2 - 1)!
+$$
+Reemplazando en $\llamada1$:
+$$
+  \ub{(n^2)!}{\en O((n^2)!)} ~ \igual{def} ~ \ub{\ob{n^2 \cdot (n^2 - 1)!}{(n^2)!} + 1}{\en O((n^2)!)}
 $$
 También puedo pensar que estoy en un árbol que tiene costo por \textit{subproblema} de $O(1)$, por lo que la complejidad será contar
 la cantidad de nodos que hay en árbol:
@@ -350,6 +356,7 @@ el árbol de recursiones se achica de forma apreciable.
 
 \ul{Podas adicionales habría que controlar las diagonales.}
 
-\item
-\hacer
+\item \hacer
+
 \end{enumerate}
+\fin
