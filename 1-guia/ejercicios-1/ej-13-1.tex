@@ -97,14 +97,17 @@ funcion posMerge(B, e, j, izq, der)        // Dado e y su posición j en el arra
         Con lo que suponemos $n$ potencia de 2 y armamos árbol:
 
         \begin{center}
-          \begin{tikzpicture}[node distance=2cm]
-            \node[circle, draw, minimum size=1cm, label=above:{$n$}] (n0) {$\log(n)$};
-            \node[circle, draw, minimum size=1cm, right of=n0, label=above:{$\frac{n}{2}$}] (n1) {$\log(\frac{n}{2})$};
-            \node[circle, draw, minimum size=1cm, right of=n1, label=above:{$\frac{n}{4}$}] (n2) {$\log(\frac{n}{4})$};
-            \node[circle, draw, minimum size=1cm, right = 2.5cm of n2, dashed, label=above:{$\frac{n}{2^i}$}] (ndots) {$\log(\frac{n}{2^i})$};
-            \node[circle, draw, minimum size=1cm, right = 2.5cm of ndots, label=above:{$4$}] (n4) {$\log(4)$};
-            \node[circle, draw, minimum size=1cm, right of=n4, label=above:{$2$}] (n5) {$\log(2)$};
-            \node[circle, draw, minimum size=1cm, right of=n5, label=above:{$1$}] (n6) {$1$};
+          \begin{tikzpicture}[
+              node distance=2cm,
+              nodo/.style ={circle, draw, minimum size = 1cm},
+            ]
+            \node[nodo, label=above:{$n$}] (n0) {$\log(n)$};
+            \node[nodo, right of=n0, label=above:{$\frac{n}{2}$}] (n1) {$\log(\frac{n}{2})$};
+            \node[nodo, right of=n1, label=above:{$\frac{n}{4}$}] (n2) {$\log(\frac{n}{4})$};
+            \node[nodo, right = 2.5cm of n2, dashed, label=above:{$\frac{n}{2^i}$}] (ndots) {$\log(\frac{n}{2^i})$};
+            \node[nodo, right = 2.5cm of ndots, label=above:{$4$}] (n4) {$\log(4)$};
+            \node[nodo, right of=n4, label=above:{$2$}] (n5) {$\log(2)$};
+            \node[nodo, right of=n5, label=above:{$1$}] (n6) {$1$};
 
             \draw[-latex] (n0) to (n1);
             \draw[-latex] (n1) to (n2);
