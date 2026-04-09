@@ -1,0 +1,70 @@
+\begin{enunciado}{\ejercicio[Diferencia Mínima]}
+
+  \textit{Diferencia Mínima}
+
+     Se tienen dos arreglos de $n$ naturales $A$ y $B$. $A$ está ordenado de manera creciente y B está ordenado de
+    manera decreciente. Ningún valor aparece más de una vez en el mismo arreglo. Para cada posición $i$ consideramos
+    la diferencia absoluta entre los valores de ambos arreglos $|A[i]-B[i]|$. Se desea buscar el mínimo valor posible
+    de dicha cuenta. Por ejemplo, si los arreglos son $A = [1, 2, 3, 4]$ y $B = [6, 4, 2, 1]$ los valores de las diferencias son
+    5, 2, 1, 3 y el resultado es 1.
+
+  \begin{enumerate}[label=\arabic*.]
+    \item Implementar la función m \textit{minDif}, que tome a $A$ y $B$ y resuelva el problema planteado.
+
+    \item Calcular y justificar la complejidad del algoritmo propuesto. La solución debe ser de tiempo $O(\log n)$,
+        dónde $n = tam(A) = tam(B)$.     
+  \end{enumerate}
+\end{enunciado}
+
+\begin{enumerate}[label=\arabic*)]
+  \item Hecho junto al 2.
+
+  \item Tenemos que $A$ es creciente y $B$ decreciente. Notemos lo siguiente:
+                \begin{itemize}
+                    \item Si $A[i] \geq B[i]$, tenemos que $|A[i]-B[i]| = A[i] - B[i]$, además, 
+                            usando que $A[j] > A[i]$ y $B[i] > B[j]$ para $j > i$, obtenemos que
+                            $$
+                            |A[j]-B[j]| = A[j]-B[j] > A[i] - B[i] = |A[i]-B[i]|
+                            $$
+
+                            Esto nos dice que si estamos parados en $i$ y $A[i] \geq B[i]$ , el mínimo debe estar en una posición menor o igual a $i$.
+                    \item Si $B[i] > A[i]$, tenemos que $|A[i]-B[i]| = B[i]-A[i]$, además,
+                            usando que $A[j] < A[i]$ y $B[i] < B[j]$ para $j < i$, obtenemos que
+                            $$
+                            |B[j]-A[j]| = B[j]-A[j] > B[i] - A[i] = |A[i]-B[i]|
+                            $$
+                            Esto nos dice que si estamos parados en $i$ y $A[i] < B[i]$ , el mínimo debe estar en una posición mayor o igual a $i$.
+                \end{itemize}
+        Conclusión: sale una búsqueda binaria con fritas.
+
+        \lstset{
+          mathescape=true,
+          emph={[1]funcion, return, ret, retorno},
+          emph={[2]for,each, si, sino, if, else, true, false, not},
+          emph={[3]minDif},
+          emphstyle={[1]\color{violet}\it},
+          emphstyle={[2]\color{red}\it},
+          emphstyle={[3]\color{OliveGreen}\it},
+          morecomment={[l]{//}},
+          commentstyle={\color{gray}\it\footnotesize}
+        }
+        \begin{tcolorbox}
+          \begin{lstlisting}
+funcion minDif(A, B, izq, der)          
+    si izq == der                          
+      ret |A[izq]-B[izq]|                           
+          
+    si der - izq == 1                 // Cuando quedan solo 2 devolvemos el minimo
+      ret minimo(|A[izq]-B[izq], A[der]-B[der])
+
+    medio = (izq+der)/2
+
+    si A[medio] >= B[medio]
+      ret minDif(A, B, izq, medio)
+    sino
+      ret minDif(A, B, medio, der)
+\end{lstlisting}
+        \end{tcolorbox}
+
+Asi, tenemos que $T(n) = O(\log n)$ en el peor caso.
+\end{enumerate}
